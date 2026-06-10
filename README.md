@@ -1,227 +1,117 @@
-FinBuddy is an intelligent, AI-powered financial assistant that helps users manage their money, grow their investments, and achieve financial freedom. Powered by GPT-5.1 and a multi-agent architecture, it provides personalized financial coaching 24/7.
+# 💰 FinBuddy – AI-Powered Financial Assistant Coach
 
-🌟 Features
-💰 Money Management
-Automatic Transaction Tracking - Extract transactions from SMS, receipts, and bank statements
-Smart Categorization - AI-powered expense classification (Needs, Essentials, Spends, Bills)
-Spending Analysis - Visual breakdowns and trend analysis
-Budget Recommendations - Personalized savings strategies
-📈 Investment Planning
-Risk Profiling - Comprehensive assessment of your risk tolerance
-Portfolio Analysis - Track stocks, mutual funds, FDs, PPF, NPS
-Stock Research - Real-time market data and analysis
-SIP Planning - Goal-based investment recommendations
-💳 Financial Products
-Credit Card Matching - Find the best cards for your spending patterns
-Tax Optimization - Old vs New regime comparison and 80C optimization
-Loan Eligibility - EMI calculator and eligibility assessment
-🤖 AI-Powered Agents
-13 Specialized Agents across 3 orchestrators
-Natural Language Interface - Ask questions in plain English
-Context-Aware Responses - Personalized based on your financial profile
-Real-time Streaming - Instant responses with streaming support
-🖥️ Premium Dashboard Experience
-Home Overview - Bento-grid layout with Financial Health Score and Cash Flow analysis.
-Transactions Hub - Smart table with recurring payment detection and subscription management.
-Investment Advisory - Split-view analysis: "Growth Generators" (Stocks/MFs) vs "Safety Net" (FDs/RDs).
-Market Intelligence - AI-curated news feed with sentiment analysis and emerging trends.
-Financial Toolkit - App-store style access to Tax, Loan, and Credit Card tools.
-🏗️ Architecture
-┌─────────────────────────────────────────────────────────────────┐
-│                        Frontend (Next.js)                        │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐   │
-│  │Dashboard│ │Transact │ │ Invest  │ │AI Chat  │ │ Credit  │   │
-│  └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘   │
-└───────┼──────────┼──────────┼──────────┼──────────┼──────────┘
-        │          │          │          │          │
-        ▼          ▼          ▼          ▼          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    Backend API (FastAPI)                         │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │                    Agent Service                         │   │
-│  │ ┌─────────────┐ ┌─────────────┐ ┌─────────────────────┐ │   │
-│  │ │Orchestrator1│ │Orchestrator2│ │   Orchestrator 3    │ │   │
-│  │ │   Money     │ │ Investment  │ │ Financial Products  │ │   │
-│  │ │ Management  │ │             │ │                     │ │   │
-│  │ └─────┬───────┘ └─────┬───────┘ └─────────┬───────────┘ │   │
-│  │       │               │                   │             │   │
-│  │ ┌─────┴─────┐   ┌─────┴─────┐      ┌─────┴─────┐       │   │
-│  │ │ 6 Agents  │   │ 4 Agents  │      │ 3 Agents  │       │   │
-│  │ └───────────┘   └───────────┘      └───────────┘       │   │
-│  └─────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-        │                    │                    │
-        ▼                    ▼                    ▼
-┌─────────────┐      ┌─────────────┐      ┌─────────────┐
-│ PostgreSQL  │      │    Redis    │      │  ChromaDB   │
-│  Database   │      │    Cache    │      │Vector Store │
-└─────────────┘      └─────────────┘      └─────────────┘
-🛠️ Tech Stack
-Backend
-Python 3.11+
-FastAPI - Modern, fast web framework
-SQLAlchemy - Async ORM with PostgreSQL
-Redis - Caching and session management
-Celery - Background task processing
-LangChain - Agent orchestration
-OpenAI GPT-5.1 - Language model
-ChromaDB - Vector storage
-Frontend
-Next.js 14 - React framework
-TypeScript - Type safety
-Tailwind CSS - Styling
-Redux Toolkit - State management
-Framer Motion - Animations
-Recharts - Data visualization
-📦 Installation
-Prerequisites
-Python 3.11+
-Node.js 18+
-Docker & Docker Compose
-OpenAI API key (with GPT-5.1 access)
-1. Clone the Repository
-git clone https://github.com/yourusername/finbuddy.git
-cd finbuddy
-2. Set Up Environment Variables
-# Copy example env file
-cp .env.example .env
+FinBuddy is an intelligent AI-powered financial assistant designed to help users manage expenses, optimize investments, improve savings habits, and achieve long-term financial goals. Built with a multi-agent AI architecture powered by GPT-5.1, FinBuddy delivers personalized financial guidance, portfolio insights, budgeting recommendations, and financial product suggestions through a modern and interactive dashboard.
 
-# Edit with your values
-nano .env
-Required environment variables:
+## 🚀 Key Features
 
-# OpenAI
-OPENAI_API_KEY=your-api-key-here
-OPENAI_MODEL=gpt-5.1
+### 💳 Smart Money Management
 
-# Database
-DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/finbuddy
+* Automatic transaction extraction from SMS, receipts, and bank statements
+* AI-powered expense categorization and spending analysis
+* Personalized budgeting and savings recommendations
+* Cash flow tracking and financial health monitoring
 
-# Redis
-REDIS_URL=redis://localhost:6379/0
+### 📈 Investment Planning
 
-# JWT
-JWT_SECRET_KEY=your-secret-key-here
-3. Start Database Services
-docker-compose up -d
-4. Set Up Backend
-cd backend
+* Risk profiling and investment readiness assessment
+* Portfolio analysis across stocks, mutual funds, FDs, PPF, and NPS
+* SIP planning and goal-based investment recommendations
+* AI-assisted stock research and market intelligence
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+### 🏦 Financial Products
 
-# Install dependencies
-pip install -r requirements.txt
+* Credit card recommendation engine
+* Tax optimization and old vs new regime comparison
+* Loan eligibility assessment and EMI calculations
 
-# Run migrations (when available)
-# alembic upgrade head
+### 🤖 Multi-Agent AI Architecture
 
-# Start server
-uvicorn app.main:app --reload --port 8000
-5. Set Up Frontend
-cd frontend
+* 13 specialized AI agents coordinated through 3 orchestrators
+* Context-aware financial conversations
+* Natural language interaction
+* Real-time streaming responses
 
-# Install dependencies
-npm install
+### 📊 Premium Analytics Dashboard
 
-# Start development server
-npm run dev
-6. Access the Application
-Frontend: http://localhost:3000
-Backend API: http://localhost:8000
-API Docs: http://localhost:8000/docs
-🤖 Agent System
-Orchestrator 1: Money Management
-Agent	Purpose
-OCR Agent	Extract transactions from SMS, receipts, PDFs
-Watchdog Agent	Detect anomalies and fraudulent transactions
-Categorize Agent	Classify transactions into categories
-Investment Detector	Identify recurring payments and SIPs
-Money Growth Agent	Provide budgeting and savings advice
-News Agent	Personal finance news and updates
-Orchestrator 2: Investment
-Agent	Purpose
-Analysis Agent	Risk profiling and investment readiness
-Stock Agent	Equity research and analysis
-Investment Agent	Portfolio planning and recommendations
-Market News Agent	Real-time market updates
-Orchestrator 3: Financial Products
-Agent	Purpose
-Credit Card Agent	Card recommendations and comparison
-ITR Agent	Tax calculation and optimization
-Loan Agent	Eligibility and EMI calculation
-📁 Project Structure
-finbuddy/
-├── backend/
-│   ├── app/
-│   │   ├── api/
-│   │   │   ├── v1/
-│   │   │   │   └── endpoints/
-│   │   │   └── websocket/
-│   │   ├── core/
-│   │   ├── models/
-│   │   ├── schemas/
-│   │   └── services/
-│   ├── agents/
-│   │   ├── block_1/
-│   │   ├── block_2/
-│   │   ├── block_3/
-│   │   ├── orchestrators/
-│   │   ├── prompts/
-│   │   └── tools/
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── dashboard/
-│   │   │   └── login/
-│   │   ├── components/
-│   │   ├── lib/
-│   │   └── store/
-│   └── package.json
-├── docker-compose.yml
-├── .env.example
-└── README.md
-🔒 Security
-JWT-based authentication with refresh tokens
-Password hashing with bcrypt
-CORS configuration
-Rate limiting
-Input validation with Pydantic
-🧪 Testing
-# Backend tests
-cd backend
-pytest
+* Financial Health Score tracking
+* Smart transaction management
+* Subscription and recurring payment detection
+* Investment performance monitoring
+* AI-curated financial news and sentiment analysis
 
-# Frontend tests
-cd frontend
-npm test
-📊 API Documentation
-Once the backend is running, access the interactive API docs at:
+## 🛠️ Tech Stack
 
-Swagger UI: http://localhost:8000/docs
-ReDoc: http://localhost:8000/redoc
-🚀 Deployment
-Docker (Recommended)
-docker-compose -f docker-compose.prod.yml up -d
-Manual
-Set up PostgreSQL, Redis, and ChromaDB
-Configure environment variables
-Run backend with Gunicorn
-Build and serve frontend with nginx
-🤝 Contributing
-Fork the repository
-Create a feature branch (git checkout -b feature/amazing-feature)
-Commit your changes (git commit -m 'Add amazing feature')
-Push to the branch (git push origin feature/amazing-feature)
-Open a Pull Request
-📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Backend
 
-🙏 Acknowledgments
-OpenAI for GPT-5.1
-LangChain for agent orchestration
-FastAPI for the amazing framework
-The open-source community
-Built with ❤️ for financial freedom# Finbuddy_AI_Based_Financial_Assistant
+* Python 3.11+
+* FastAPI
+* SQLAlchemy
+* PostgreSQL
+* Redis
+* Celery
+* LangChain
+* OpenAI GPT-5.1
+* ChromaDB
+
+### Frontend
+
+* Next.js 14
+* TypeScript
+* Tailwind CSS
+* Redux Toolkit
+* Framer Motion
+* Recharts
+
+### Infrastructure
+
+* Docker & Docker Compose
+* JWT Authentication
+* WebSockets
+* REST APIs
+
+## 🏗️ System Architecture
+
+Frontend (Next.js) → FastAPI Backend → Multi-Agent AI Layer → PostgreSQL / Redis / ChromaDB
+
+The platform uses three dedicated orchestrators:
+
+1. **Money Management Orchestrator**
+
+   * Transaction Analysis
+   * Expense Categorization
+   * Fraud Detection
+   * Budget Planning
+
+2. **Investment Orchestrator**
+
+   * Risk Assessment
+   * Portfolio Analysis
+   * Stock Research
+   * Market Intelligence
+
+3. **Financial Products Orchestrator**
+
+   * Credit Card Matching
+   * Tax Optimization
+   * Loan Advisory
+
+## 🔒 Security Features
+
+* JWT Authentication
+* Password Hashing (bcrypt)
+* Input Validation (Pydantic)
+* Rate Limiting
+* Secure API Design
+* CORS Protection
+
+## 🎯 Project Highlights
+
+* Multi-Agent AI Financial Assistant
+* Full-Stack Production Architecture
+* Real-Time Financial Analytics
+* Personalized Financial Coaching
+* Modern Dashboard Experience
+* Scalable Microservice-Friendly Design
+
+Built with ❤️ to make financial planning smarter, simpler, and more accessible.
+
